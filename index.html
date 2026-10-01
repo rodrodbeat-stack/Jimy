@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER-NETX // Máscaras 3D de Alta Tecnología</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HUD SUPERIOR -->
+    <header>
+        <div class="hud-status">SYS_STATUS: ONLINE // INTERFACE_SECURE</div>
+        <div class="hud-target">LOC_SYS: [0x46B9]</div>
+        <h1>CYBER<span>MIND_3D</span></h1>
+        <div class="tagline">// MATRIZ DE ADQUISICIÓN BIOMÉTRICA ENGAGED //</div>
+    </header>
+
+    <!-- HÉROE / INTRODUCCIÓN -->
+    <section class="hero">
+        <div class="hero-box">
+            <h2>SISTEMA DE CONFIGURACIÓN CIBERNÉTICA</h2>
+            <p>Acceso autorizado a la forja automatizada. Producción y ensamblaje de módulos faciales tácticos basados en arquitectura de combate <strong>T-800</strong> e ingeniería de rastreo avanzado <strong>Yautja</strong>. Selecciona tu armamento defensivo e inicia la secuencia de despliegue de hardware.</p>
+        </div>
+    </section>
+
+    <!-- INTERFAZ DE TIENDA -->
+    <main class="main-layout">
+        
+        <!-- CATÁLOGO DE PRODUCTOS -->
+        <section class="catalog-container">
+            <h2 class="catalog-title">// ARMAMENTO INTERFACIAL DISPONIBLE</h2>
+            <div class="products-grid" id="products-grid-container">
+                <!-- Se inyecta dinámicamente desde app.js -->
+            </div>
+        </section>
+
+        <!-- PANEL DE CONTROL / CARRITO Y FORMULARIO -->
+        <aside class="control-panel">
+            
+            <!-- CARRITO -->
+            <div class="cart-panel">
+                <div class="cart-title">
+                    <span>[ TERMINAL_CART ]</span>
+                    <span id="cart-count">0</span>
+                </div>
+                <div class="cart-items" id="cart-container">
+                    <div class="empty-cart-msg">SISTEMA VACÍO - ESPERANDO HARDWARE</div>
+                </div>
+                <div class="cart-total">
+                    <span>TOTAL:</span>
+                    <span id="cart-total-value">$0.00</span>
+                </div>
+            </div>
+
+            <!-- REGISTRO BIOMÉTRICO -->
+            <div class="bio-panel">
+                <div class="bio-title">[ REGISTRO BIOMÉTRICO ]</div>
+                <form id="bio-form">
+                    <div class="form-group">
+                        <label for="op-id">ID OPERATIVO (Nombre/Alias):</label>
+                        <input type="text" id="op-id" required placeholder="Ej: Soldado_Connor">
+                    </div>
+                    <div class="form-group">
+                        <label for="op-phone">TELÉFONO DE ENLACE:</label>
+                        <input type="tel" id="op-phone" required placeholder="Ej: +56912345678">
+                    </div>
+                    <div class="form-group">
+                        <label for="cranial-size">CIRCUNFERENCIA CRANEAL (cm):</label>
+                        <input type="number" id="cranial-size" required min="40" max="80" placeholder="Ej: 58">
+                    </div>
+                    <div class="form-group">
+                        <label for="harness-type">SISTEMA DE ANCLAJE:</label>
+                        <select id="harness-type">
+                            <option value="Táctico Elástico">Arnés Táctico Elástico</option>
+                            <option value="Hebillas Polímero">Hebillas de Polímero Rígido</option>
+                            <option value="Magnético Premium">Acople Magnético N52</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <button class="btn-action btn-checkout" onclick="executeTransaction()">
+                Ejecutar Transacción (WhatsApp)
+            </button>
+        </aside>
+    </main>
+
+    <footer>
+        <p>// CONEXIÓN ENCRIPTADA TERMINADA // DIGITAL_FACTORY 2026</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
