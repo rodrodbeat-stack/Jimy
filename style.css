@@ -1,0 +1,147 @@
+/* CONFIGURACIÓN ESTILO HUD / TERMINATOR / DEPREDADOR */
+:root {
+    --neon-red: #ff003c;
+    --neon-green: #00ff66;
+    --dark-bg: #050508;
+    --panel-bg: rgba(10, 10, 15, 0.9);
+    --hud-amber: #ffaa00;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #ffffff;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(var(--neon-red) 1px, transparent 0),
+        radial-gradient(var(--neon-green) 1px, transparent 0);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+/* EFECTO CRT GLOBAL */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+    z-index: 9999;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+}
+
+header {
+    border-bottom: 2px solid var(--neon-red);
+    padding: 25px;
+    background: var(--panel-bg);
+    text-align: center;
+    box-shadow: 0 0 15px var(--neon-red);
+    position: relative;
+}
+
+.hud-status { position: absolute; top: 5px; left: 10px; font-size: 10px; color: var(--neon-green); animation: blink 1.5s infinite; }
+.hud-target { position: absolute; top: 5px; right: 10px; font-size: 10px; color: var(--neon-red); }
+
+h1 { font-size: 2.5rem; text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red); letter-spacing: 5px; }
+h1 span { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+.tagline { margin-top: 10px; font-size: 0.9rem; color: var(--hud-amber); text-transform: uppercase; }
+
+.hero { display: flex; justify-content: center; padding: 30px 20px; }
+.hero-box {
+    border: 1px solid var(--neon-green);
+    background: var(--panel-bg);
+    padding: 20px;
+    max-width: 800px;
+    box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.1);
+    position: relative;
+}
+.hero-box::before {
+    content: "[ RETINAL SCAN: ACTIVE ]";
+    position: absolute;
+    top: -10px; left: 20px;
+    background: var(--dark-bg);
+    padding: 0 10px;
+    color: var(--neon-green);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* LAYOUT */
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 30px;
+}
+
+@media (min-width: 992px) {
+    .main-layout { flex-direction: row; align-items: flex-start; }
+}
+
+.catalog-container { flex: 2; }
+.control-panel { flex: 1; display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px; }
+
+.catalog-title { margin-bottom: 20px; font-size: 1.5rem; color: var(--neon-green); text-shadow: 0 0 8px var(--neon-green); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+/* CARTAS */
+.product-card { background: var(--panel-bg); border: 1px solid #333; display: flex; flex-direction: column; justify-content: space-between; }
+.product-card:hover { border-color: var(--neon-red); box-shadow: 0 0 15px rgba(255, 0, 60, 0.3); }
+
+.product-image-container {
+    width: 100%; height: 200px; background: #0f0f15;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid #222; overflow: hidden;
+}
+
+.mask-placeholder { width: 90px; height: 120px; border-radius: 50% 50% 40% 40%; border: 2px solid var(--neon-green); background: linear-gradient(45deg, #151520, #050505); }
+.mask-placeholder.terminator { border-color: #777; box-shadow: 0 0 15px rgba(255,0,0,0.5); }
+.mask-placeholder.predator { border-color: #aa0000; border-radius: 40% 40% 50% 50%; }
+
+.scanline-effect { position: absolute; width: 100%; height: 4px; background: rgba(0, 255, 102, 0.2); top: 0; animation: scan 4s linear infinite; }
+
+.product-info { padding: 15px; }
+.product-title { font-size: 1.1rem; margin-bottom: 5px; text-transform: uppercase; color: #fff; }
+.product-meta { font-size: 10px; color: var(--hud-amber); margin-bottom: 10px; }
+.product-desc { font-size: 0.8rem; color: #bbb; margin-bottom: 15px; min-height: 40px; }
+.product-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 1.2rem; color: var(--neon-green); font-weight: bold; }
+
+/* COMPONENTES DE BOTÓN Y FORMULARIO */
+.btn-action {
+    display: block; width: 100%; padding: 12px; background: transparent;
+    color: var(--neon-red); border: 1px solid var(--neon-red);
+    text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.2s ease;
+}
+.btn-action:hover { background: var(--neon-red); color: #fff; box-shadow: 0 0 10px var(--neon-red); }
+
+.cart-panel, .bio-panel { background: var(--panel-bg); border: 1px solid var(--neon-green); padding: 15px; box-shadow: 0 0 15px rgba(0, 255, 102, 0.1); }
+.cart-title, .bio-title { font-size: 1.2rem; color: var(--neon-green); border-bottom: 1px solid var(--neon-green); padding-bottom: 5px; margin-bottom: 12px; display: flex; justify-content: space-between; text-transform: uppercase; }
+
+.cart-items { max-height: 180px; overflow-y: auto; margin-bottom: 10px; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; padding: 6px 0; border-bottom: 1px dashed #333; }
+.cart-item-controls button { background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green); padding: 1px 5px; cursor: pointer; margin: 0 2px; }
+.cart-total { font-size: 1.1rem; color: var(--hud-amber); display: flex; justify-content: space-between; padding-top: 8px; border-top: 1px solid #333; }
+.empty-cart-msg { font-size: 0.8rem; color: #555; text-align: center; padding: 15px 0; }
+
+/* FORMULARIO */
+.form-group { margin-bottom: 10px; }
+.form-group label { display: block; font-size: 9px; color: var(--hud-amber); margin-bottom: 4px; text-transform: uppercase; }
+.form-group input, .form-group select { width: 100%; padding: 8px; background: #000; border: 1px solid #444; color: #fff; font-size: 11px; }
+.form-group input:focus, .form-group select:focus { border-color: var(--neon-green); outline: none; }
+
+.btn-checkout { color: var(--neon-green); border-color: var(--neon-green); margin-top: 10px; }
+.btn-checkout:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 10px var(--neon-green); }
+
+footer { margin-top: 40px; padding: 20px; background: #000; border-top: 2px solid var(--neon-green); text-align: center; font-size: 0.75rem; color: #555; }
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
